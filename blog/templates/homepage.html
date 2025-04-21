@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Wszystkie wpisy</h1>
+
+{% for post in all_posts %}
+<div>
+   <h2 style="display: inline-block;">{{ post.title }}</h2>
+
+   <!-- Ikona edycji - link do formularza edycji -->
+   <a href="{{ url_for('main.edit_entry', entry_id=post.id) }}" class="btn btn-link" style="vertical-align: middle;">
+      <i class="bi bi-pencil" style="font-size: 1.5em; color: #007bff;"></i> <!-- Ikona ołówka -->
+   </a>
+
+   <p>{{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+   <p>
+       {{ post.body[:100] }}... <!-- Pokazujemy tylko pierwsze 100 znaków -->
+   </p>
+</div>
+<hr>
+
+{% endfor %}
+
+{% endblock %}
